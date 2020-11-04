@@ -1,1 +1,3 @@
 学习笔记
+周四必做题：整合okHTTP去实现将请求返回给客户端，具体的类主要是OkhttpOutboundHandler
+周六必做题：实现filter，在header里添加kv形式的一组信息nio:yanglei,具体实现类为HttpInboundFilter
