@@ -1,0 +1,42 @@
+sharding:
+  jdbc:
+    dataSource:
+      names: db-test0,db-test1,db-test2
+      #主库
+      db-test0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
+        username: root
+        password:
+        maxPoolSize: 20
+      db-test1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:13306/test?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
+        username: root
+        password:
+        maxPoolSize: 20
+      db-test2:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:23306/test?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
+        username: root
+        password:
+        maxPoolSize: 20
+    config:
+      masterslave:
+        load-balance-algorithm-type: round_robin
+        name: db1s2
+        master-data-source-name: db-test0
+        slave-data-source-names: db-test1,db-test2
+    props:
+      sql:
+        show: true
+
+server.port: 8085
+mybatis.config-location: classpath:mybatis/mybatis-config.xml
+
+spring:
+  main:
+    allow-bean-definition-overriding=true:

@@ -1,1 +1,2 @@
-学习笔记
+﻿1、ss项目为使用ShardingSphere-jdbc实现Mysql主从读写分离;
+2、week07_jobs项目为使用AbstractRoutingDataSource注解实现Mysql主从读写分离;
