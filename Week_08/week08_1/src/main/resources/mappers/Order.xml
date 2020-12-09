@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.job01.Repository.orderRepository">
+
+    <resultMap id="baseResultMap" type="com.example.job01.entity.t_order">
+        <result column="order_id" property="order_id" jdbcType="INTEGER" />
+        <result column="customer_id" property="customer_id" jdbcType="INTEGER" />
+        <result column="product_id" property="product_id" jdbcType="INTEGER" />
+        <result column="product_name" property="product_name" jdbcType="VARCHAR" />
+        <result column="product_cnt" property="product_cnt" jdbcType="INTEGER" />
+        <result column="product_price" property="product_price" jdbcType="DOUBLE" />
+        <result column="shipping_user" property="shipping_user" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <insert id="addOrder">
+        INSERT INTO t_order (
+        order_id, customer_id, product_id, product_name, product_cnt, product_price, shipping_user
+        )
+        VALUES (
+        #{order_id,jdbcType=INTEGER},
+        #{customer_id,jdbcType=INTEGER},
+        #{product_id,jdbcType=INTEGER},
+        #{product_name,jdbcType=VARCHAR},
+        #{product_cnt,jdbcType=INTEGER},
+        #{product_price,jdbcType=DOUBLE},
+        #{shipping_user,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <select id="list" resultMap="baseResultMap">
+        SELECT o.* FROM t_order o
+    </select>
+
+    <delete id="deleteByOrderId" parameterType="int">
+        DELETE from t_order where order_id = #{order_id}
+    </delete>
+
+    <update id="updateProduct_cntByOrder_id" parameterType="com.example.job01.entity.t_order">
+        UPDATE t_order set product_cnt = #{product_cnt} where order_id = #{order_id}
+    </update>
+
+    <insert id="addBatchOrders" parameterType="com.example.job01.entity.t_order">
+        insert into t_order (order_id, customer_id, product_id, product_name, product_cnt, product_price, shipping_user)
+        <foreach collection="orders" item="b" open=" values" separator="," >
+            (#{b.order_id},#{b.customer_id},#{b.product_id},#{b.product_name},#{b.product_cnt},#{b.product_price},#{b.shipping_user})
+        </foreach>
+    </insert>
+
+</mapper>
