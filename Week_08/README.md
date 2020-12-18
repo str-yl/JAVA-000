@@ -13,7 +13,7 @@ spring.shardingsphere.datasource.ds0.maxActive=20
 
 # 这是数据源1的配置
 spring.shardingsphere.datasource.ds1.type=com.alibaba.druid.pool.DruidDataSource
-spring.shardingsphere.datasource.ds1.url=jdbc:mysql://localhost:3306/ds1?serverTimezone=GMT%2B8&characterEncoding=utf-8
+spring.shardingsphere.datasource.ds1.url=jdbc:mysql://localhost:3307/ds1?serverTimezone=GMT%2B8&characterEncoding=utf-8
 spring.shardingsphere.datasource.ds1.driver-class-name=com.mysql.jdbc.Driver
 spring.shardingsphere.datasource.ds1.username=root
 spring.shardingsphere.datasource.ds1.password=123456
