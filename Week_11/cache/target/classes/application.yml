@@ -1,0 +1,45 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+
+
+  jedis:
+    host: localhost
+    password:
+    port: 6379
+    maxTotal: 60
+    maxIdle: 10
+    minIdle: 5
+    testOnBorrow: true
+    testOnReturn: false
+    timeOut: 10
+    maxWaitMillis: 60000
+#  cache:
+#    type: redis
+#  redis:
+#    host: localhost
+#    port: 6379
+#    lettuce:
+#      pool:
+#        max-active: 16
+#        max-wait: 10ms
+
+#    type: ehcache
+#    ehcache:
+#      config: ehcache.xml
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: io.kimmking.cache.entity
+
+logging:
+  level:
+    io:
+      kimmking:
+        cache : info
